@@ -12,3 +12,5 @@
         - nginx
         - tomcat7
         - mysql-server
+    - service: name=nginx state=restarted
+    - service: name=mysqld state=restarted
