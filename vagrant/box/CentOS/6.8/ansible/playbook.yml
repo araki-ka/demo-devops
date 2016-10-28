@@ -3,7 +3,7 @@
   connection: local
   become: true
   tasks:
-    - name: install or update via apt-get
+    - name: install or update via yum
       yum:
         pkg={{ item }}
         state=latest
