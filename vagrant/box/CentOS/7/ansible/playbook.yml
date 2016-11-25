@@ -20,6 +20,11 @@
         - mysql-community-server
         - nginx
         - tomcat
-    - service: name=mysqld state=restarted
-    - service: name=tomcat state=restarted
-    - service: name=nginx state=restarted
+    - name: restart service
+      service:
+          name={{ item }}
+          state=restarted
+      with_items:
+        - mysqld
+        - tomcat
+        - nginx
