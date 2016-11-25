@@ -6,12 +6,12 @@
     - name: install or update via yum
       yum:
         pkg={{ item }}
-        state=latest
+        state=installed
         update_cache=yes
       with_items:
-        - nginx
+        - mysql-server
         # TODO yum install できないので
         #- tomcat7
-        - mysql-server
-    - service: name=nginx state=restarted
+        - nginx
     - service: name=mysqld state=restarted
+    - service: name=nginx state=restarted

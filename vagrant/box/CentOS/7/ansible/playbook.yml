@@ -1,0 +1,25 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  tasks:
+    - name: remove MariaDB
+      yum:
+        name=mariadb
+        state=absent
+    - name: yum localinstall MySQL 5.7
+      yum:
+        name=http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+        state=installed
+    - name: install or update via yum
+      yum:
+        name={{ item }}
+        state=installed
+        update_cache=yes
+      with_items:
+        - mysql-community-server
+        - nginx
+        - tomcat
+    - service: name=mysqld state=restarted
+    - service: name=tomcat state=restarted
+    - service: name=nginx state=restarted
