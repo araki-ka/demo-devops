@@ -5,13 +5,18 @@
   tasks:
     - name: install or update via yum
       yum:
-        pkg={{ item }}
+        name={{ item }}
         state=installed
         update_cache=yes
       with_items:
         - mysql-server
-        # TODO yum install できないので
-        #- tomcat7
+        - tomcat
         - nginx
-    - service: name=mysqld state=restarted
-    - service: name=nginx state=restarted
+    - name: restart service
+      service:
+          name={{ item }}
+          state=restarted
+      with_items:
+        - mysqld
+        - tomcat
+        - nginx
