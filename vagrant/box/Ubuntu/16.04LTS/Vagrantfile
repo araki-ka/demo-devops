@@ -57,6 +57,7 @@ Vagrant.configure("2") do |config|
   # information on available options.
   config.vm.provider "virtualbox" do |vb|
       vb.name = "Server for Ubuntu 16.04LTS"
+      vb.memory = 4096
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
